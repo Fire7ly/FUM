@@ -31,7 +31,10 @@ Google For Verious searches.
 **Note:-**
 
 To Use Fastboot Unbrick Your Device Must Be Bootloader Unlocked.
+
 Use It At Your Own Risk.
+
 If You Use It and It Cause Problems Or Device Damaged or Bricked im Not Responsible Of that.
+
 I'll laugh at you if you come to me
 
