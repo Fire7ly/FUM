@@ -22,7 +22,7 @@ Thanks:-
 
 Google SDK For Platforme Tool Files.
 
-Xda Mamber tal.aloni For SparseConverter v1.0.1.
+Xda Mamber **tal.aloni** For SparseConverter v1.0.1.
 
 Google For Verious searches.
 
