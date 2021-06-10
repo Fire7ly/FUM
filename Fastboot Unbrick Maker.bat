@@ -46,6 +46,8 @@ echo Now Cooking Fastboot Unbrick.
 echo.
 @echo [91mDevice Work Done Now You Can Unplug Your Device From Pc.[0m
 echo.
+adb reboot
+echo.
 timeout /t 2 > nul
 echo Making SuperChunk.
 SparseConverter /compress .\super .\files 900MB
