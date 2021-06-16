@@ -16,7 +16,9 @@ Add Files and Zip Them.
 **How To Use It:-**
 
 Install 7zip And Make That system or User Variable.
+
 Connect Your Device Into Recovery Mode Through Data Cord.
+
 When Device Work Done it Shows You To disconnect Your Device, you Can Use Use your Device Now.
 
 
