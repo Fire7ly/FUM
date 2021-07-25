@@ -66,6 +66,8 @@ copy adb.exe .\files && copy AdbWinApi.dll .\files && copy AdbWinUsbApi.dll .\fi
 set path=%ProgramFiles%\7-Zip; %path%
 7z a -tzip Fastboot_Unbrick.zip "Readme.txt" files
 echo Congratulations Your Fastboot Unbrick Is ready.
+if exist Fastboot_Unbrick.zip ( echo Fastboot_Unbrick.zip is present ) 
+if not exist Fastboot_Unbrick.zip (@echo [91mFastboot_Unbrick.zip is not present[0m)
 echo Time For Cleaning...
 echo.
 timeout /t 1 > nul
