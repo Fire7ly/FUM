@@ -63,6 +63,7 @@ timeout /t 1 > nul
 echo Collecting Files And Making Fastboot Unbrick For You.
 echo Please Wait..
 copy adb.exe .\files && copy AdbWinApi.dll .\files && copy AdbWinUsbApi.dll .\files && copy fastboot.exe .\files
+set path=%ProgramFiles%\7-Zip; %path%
 7z a -tzip Fastboot_Unbrick.zip "Readme.txt" files
 echo Congratulations Your Fastboot Unbrick Is ready.
 echo Time For Cleaning...
