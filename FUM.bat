@@ -1,7 +1,12 @@
 @echo off
+cls 
 color 0A
-title Fastboot Unbrick Maker V01
-cls
+title FUM V02 BY @fire7ly
+color 3
+@echo ======================================================
+@echo  				MADE BY fire7ly
+@echo   UNIVERSAL FASTBOOT UNBRICK MAKER FOR REALME DEVICES
+@echo ======================================================
 @echo [91mNote:- Before Use This Utility You Must Need 10GB free Space on your System.                             
 @echo        You Must have Connected Into Recovery Mode.                                                           
 @echo 		  Your Device Must Have Driver installed. "ADB OR MTK"                                                  
@@ -10,15 +15,12 @@ cls
 @echo     	  Use It At Your Own Risk. If Somthing Wrong, And You Point Finger On me I WILL LAUGH ON YOU.           
 @echo    	  Last But Not The least You Find Your Fastboot_Unbrick.Zip In The Script Directory Keep That Safe.[0m   
 timeout /t 5 > nul
-cls
+echo device checked Working Correctly.
+if exist files ( del /q files && rd files )
 mkdir files
 echo Directory Created Successfully.
 echo Now Magick Begain Just Wait, Be Patience For That.
 timeout /t 1 > nul
-adb devices
-rem Will put here check condition.
-echo.
-echo device checked.
 adb root 
 echo.
 echo Please Wait Pulling Super From Device.
@@ -62,15 +64,16 @@ echo.
 timeout /t 1 > nul
 echo Collecting Files And Making Fastboot Unbrick For You.
 echo Please Wait..
-copy adb.exe .\files && copy AdbWinApi.dll .\files && copy AdbWinUsbApi.dll .\files && copy fastboot.exe .\files
+copy adb.exe .\files && copy AdbWinApi.dll .\files && copy AdbWinUsbApi.dll .\files && copy fastboot.exe .\files > nul
 set path=%ProgramFiles%\7-Zip; %path%
 7z a -tzip Fastboot_Unbrick.zip "Readme.txt" files
 if exist Fastboot_Unbrick.zip ( echo Congratulations Your Fastboot Unbrick Is ready.
 echo Time For Cleaning...
-echo.
 timeout /t 1 > nul
 del /q files && rd files
 echo Cleaning Done Process Ends In 2 Seconds.
 timeout /t 2 > nul ) 
-if not exist Fastboot_Unbrick.zip (@echo [91mFastboot_Unbrick.zip is not present[0m cleaning abort )
+if not exist Fastboot_Unbrick.zip (
+@echo [91mFastboot_Unbrick.zip is not present[0m 
+echo cleaning abort )
 exit
