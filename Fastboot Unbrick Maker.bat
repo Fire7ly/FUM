@@ -65,13 +65,12 @@ echo Please Wait..
 copy adb.exe .\files && copy AdbWinApi.dll .\files && copy AdbWinUsbApi.dll .\files && copy fastboot.exe .\files
 set path=%ProgramFiles%\7-Zip; %path%
 7z a -tzip Fastboot_Unbrick.zip "Readme.txt" files
-echo Congratulations Your Fastboot Unbrick Is ready.
-if exist Fastboot_Unbrick.zip ( echo Fastboot_Unbrick.zip is present ) 
-if not exist Fastboot_Unbrick.zip (@echo [91mFastboot_Unbrick.zip is not present[0m)
+if exist Fastboot_Unbrick.zip ( echo Congratulations Your Fastboot Unbrick Is ready.
 echo Time For Cleaning...
 echo.
 timeout /t 1 > nul
 del /q files && rd files
 echo Cleaning Done Process Ends In 2 Seconds.
-timeout /t 2 > nul.
+timeout /t 2 > nul ) 
+if not exist Fastboot_Unbrick.zip (@echo [91mFastboot_Unbrick.zip is not present[0m cleaning abort )
 exit
