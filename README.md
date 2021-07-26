@@ -1,5 +1,5 @@
 # FUM
-FASTBOOT UNBRICK MAKER Version 2
+FASTBOOT UNBRICK MAKER VERSION 2
 
 
 A Windows Batch File Which Automated Make Fastboot_Unbricks For Realme Devices. 
@@ -23,7 +23,9 @@ When Device Work Done it Shows You To disconnect Your Device, you Can Use Use yo
 
 **Changelog:-**
 Device detaction no more need to Connect on recovery mode. (Enable Usb Debugging Must)
+
 No More need to make system variable.
+
 Fixed 7zip files Erased Error.
 
 
