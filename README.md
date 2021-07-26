@@ -19,6 +19,8 @@ Install 7zip.
 
 Connect Your Device Through Data Cord.
 
+run start.bat And voila! it will do all Work itself.
+
 When Device Work Done it Shows You To disconnect Your Device, you Can Use Use your Device Now.
 
 **Changelog:-**
