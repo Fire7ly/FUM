@@ -35,7 +35,7 @@ for /F "delims=" %%a in ('adb.exe shell getprop ro.build.display.ota') do set ID
 for /F "delims=" %%a in ('adb.exe shell getprop ro.oppo.market.name') do set NAME=%%a
 echo.
 echo device checked.
-@echo [91m.
+@echo.[91m
 echo Hostname: %NAME%
 echo Detected: %DEVICE% (%PRODUCT%)
 echo Firmware: %ID%
