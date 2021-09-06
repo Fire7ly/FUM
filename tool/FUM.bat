@@ -4,10 +4,10 @@ setlocal EnableExtensions DisableDelayedExpansion
 color 0A
 title FUMA BY @fire7ly 
 cls
-@echo 				===================================================================================================
-@echo  									                  		MADE BY fire7ly
+@echo 				====================================================================================================
+@echo  									     		MADE BY fire7ly
 @echo    					              		Fastboot Unbrick Maker Advance.
-@echo 				===================================================================================================
+@echo 				====================================================================================================
 @echo 					[91mNote:- Before Use This Utility You Must Need 10GB free Space on your System.
 @echo                                  		 This is Fully Automatic Process Don`t interrupt it.
 @echo 						 Your Device Must Have Driver installed. "ADB OR MTK"
