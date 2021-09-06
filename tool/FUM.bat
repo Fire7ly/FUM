@@ -196,10 +196,12 @@ echo.
 @echo [91m Congratulations Your Fatboot_Unbrick_%ID%.zip Is Ready.[0m
 echo.
 rem Set Name Of Fastboot_Unbrick To User Desire.
-if not exist .\Product\Fatboot_Unbrick_%ID%.zip (
-@echo [91mFastboot_Unbrick.zip is not present[0m 
-echo cleaning abort )
+if not exist .\Product\Fatboot_Unbrick_%ID%.zip ( @echo [91mFastboot_Unbrick.zip is not present[0m 
+echo cleaning abort 
 exit
+)
+if exist .\Product\Fatboot_Unbrick_%ID%.zip ( @echo [91mFastboot_Unbrick.zip is present[0m 
+)
 :cleaning
 echo.
 echo Time For Cleaning...
@@ -212,4 +214,3 @@ start .\Product
 timeout /t 2 > nul
 :end
 goto :eof
-rem exit
