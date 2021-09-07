@@ -29,10 +29,10 @@ timeout /t 1 > nul
 tool\adb devices 
 tool\adb root 
 echo.
-for /F "delims=" %%a in ('adb.exe shell getprop ro.product.odm.model') do set DEVICE=%%a
-for /F "delims=" %%a in ('adb.exe shell getprop ro.build.product') do set PRODUCT=%%a
-for /F "delims=" %%a in ('adb.exe shell getprop ro.build.display.ota') do set ID=%%a
-for /F "delims=" %%a in ('adb.exe shell getprop ro.oppo.market.name') do set NAME=%%a
+for /F "delims=" %%a in ('tool\adb.exe shell getprop ro.product.odm.model') do set DEVICE=%%a
+for /F "delims=" %%a in ('tool\adb.exe shell getprop ro.build.product') do set PRODUCT=%%a
+for /F "delims=" %%a in ('tool\adb.exe shell getprop ro.build.display.ota') do set ID=%%a
+for /F "delims=" %%a in ('tool\adb.exe shell getprop ro.oppo.market.name') do set NAME=%%a
 echo.
 echo device checked.
 @echo.[91m
