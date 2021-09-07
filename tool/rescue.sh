@@ -28,7 +28,7 @@ sleep 5
 
 echo "Starting..."
 echo "Looking for device..."
-if fastboot devices -l | grep -q "fastboot"; then
+if ./fastboot devices -l | grep -q "fastboot"; then
     echo "Device found in fastboot mode."
 else
     echo "Device not found in fastboot mode. Connect it in fastboot mode and run script again."
