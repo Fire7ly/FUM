@@ -15,7 +15,7 @@ exit
 )
 :checkadb
 cls
-tool\adb devices -l | findstr "product:RMX2020 product:RMX2027 product:rmx2020 product:rmx2027 product:RMX3171 product:RMX3191**" > nul
+tool\adb devices -l | findstr "product:RMX product:rmx" > nul
  if errorlevel 1 (
     echo ADB:
     echo Device Not Connected In Adb Mode.
@@ -54,7 +54,7 @@ tool\fastboot devices -l | findstr "fastboot" > nul
 	)
 
 	:checkrcvry
-tool\adb devices -l | findstr "product:omni_RMX2020 product:omni_RMX2027  product:omni_RMX3171 product:omni_rmx3171 recovery" > nul
+tool\adb devices -l | findstr "recovery" > nul
  if errorlevel 1 (
     echo ADB:
     echo Device Not Connected In Recovey Mode.
