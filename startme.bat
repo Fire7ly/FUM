@@ -15,7 +15,7 @@ exit
 )
 :checkadb
 cls
-tool\adb devices -l | findstr "product:RMX2020 product:RMX2027 product:rmx2020 product:rmx2027 product:RMX3171 product:RMX3191" > nul
+tool\adb devices -l | findstr "product:RMX2020 product:RMX2027 product:rmx2020 product:rmx2027 product:RMX3171 product:RMX3191**" > nul
  if errorlevel 1 (
     echo ADB:
     echo Device Not Connected In Adb Mode.
