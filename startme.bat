@@ -26,20 +26,22 @@ tool\adb devices -l | findstr "product:RMX product:rmx" > nul
     echo ADB:
     echo Device Found In System ADB Mode!
 	tool\adb reboot recovery
-	tool\adb wait-for-usb-recovery > nul 
 	echo Wait For Reboot Into Recovery.
+	tool\adb wait-for-usb-recovery > nul 
 	goto checkrcvry
 	)
 	
 :checkfastboot 
 tool\fastboot devices -l | findstr "fastboot" > nul
  if errorlevel 1 (
+        echo.
 	echo Fastboot:
     echo Devices Not Connected In Fastboot Mode.
 	echo Check Again In 2 Second.
 	timeout /t 2 > nul			   
     goto checkrcvry
  ) else (
+ 	echo.
 	echo Fastboot:
     echo Device Found In Fastboot Mode!
 	echo Your Device Must Be In Adb Mode Of Recovery To Operate Fastboot Maker.
@@ -56,17 +58,19 @@ tool\fastboot devices -l | findstr "fastboot" > nul
 	:checkrcvry
 tool\adb devices -l | findstr "recovery" > nul
  if errorlevel 1 (
+ 	echo.
     echo ADB:
     echo Device Not Connected In Recovey Mode.
 	echo Finding Into Fatboot Mode.
 	echo.
 	goto checkadb
  ) else (
-    echo ADB:
-    echo Device Found In Recovery Adb Mode!
+ 	echo.
+        echo ADB:
+        echo Device Found In Recovery Adb Mode!
 	echo Now Process Begin.
+	tool\adb wait-for-usb-recovery > nul
 	timout /t 2 > nul
 	Start /Max .\tool\FUM.bat
 	exit
 	)
-
