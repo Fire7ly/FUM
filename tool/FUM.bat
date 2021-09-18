@@ -189,7 +189,7 @@ timeout /t 2 > nul
  )
 :7zip
 
-set path=%ProgramFiles%\7-Zip; %path%
+set path=%ProgramFiles%\7-Zip;%path%
 rem Set Path For 7zip.
 7z a -tzip .\Product\Fatboot_Unbrick_%ID%.zip .\tmp\files .\tmp\Readme.txt
 echo.
