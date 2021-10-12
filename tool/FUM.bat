@@ -161,7 +161,7 @@ if not exist .\tmp\files\super_sparsechunk7 (@echo [91m super_sparsechunk7 is n
 mkdir Product
 IF "%ID%" GEQ "A**" (
 @echo [91m Firmware Detacted: %ID% 
-@echo Your Fatboot_Unbrick_%ID%.zip Will Be Aviliable In Product Folder Once It Done.
+@echo Your Fastboot_Unbrick_%ID%.zip Will Be Aviliable In Product Folder Once It Done.
 @echo Now sit Back and Do Any Other Work It Might Be Take Upto 15 Minutes, Depends On your Pc Performance.
 @echo Chill Out Drink Coffee, Tea, Coke Anything You Like. Its Upto You LoL.[0m
 echo.
