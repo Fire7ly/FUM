@@ -8,30 +8,56 @@ timeout /t 5 > nul
 @echo [91mWork Started.[0m
 fastboot devices
 @echo [91mdevice connecting successfully.[0m
+echo.
+@echo [91mflashing boot.img[0m
 fastboot flash boot boot.img
 @echo [91mSuccessful flashing boot.img[0m
+echo.
+@echo [91mflashing vbmeta.img[0m
 fastboot --disable-verification flash vbmeta vbmeta.img
 @echo [91mSuccessful flashing vbmeta.[0m
+echo.
+@echo [91mflashing recovery.img[0m
 fastboot flash recovery recovery.img
 @echo [91mSuccessful flashing recovery.[0m
+echo.
+@echo [91mflashing super_sparsechunk1[0m
 fastboot flash super super_sparsechunk1
 @echo [91mSuccessful flashing super_sparsechunk1[0m
+echo.
+@echo [91mflashing super_sparsechunk2[0m
 fastboot flash super super_sparsechunk2
 @echo [91mSuccessful flashing super_sparsechunk2[0m
+echo.
+@echo [91mflashing super_sparsechunk3[0m
 fastboot flash super super_sparsechunk3
 @echo [91mSuccessful flashing super_sparsechunk3[0m
+echo.
+@echo [91mflashing super_sparsechunk4[0m
 fastboot flash super super_sparsechunk4
 @echo [91mSuccessful flashing super_sparsechunk4[0m
+echo.
+@echo [91mflashing super_sparsechunk5[0m
 fastboot flash super super_sparsechunk5
 @echo [91mSuccessful flashing super_sparsechunk5[0m
+echo.
+@echo [91mflashing super_sparsechunk6[0m
 fastboot flash super super_sparsechunk6
 @echo [91mSuccessful flashing super_sparsechunk6[0m
+echo.
+@echo [91mflashing super_sparsechunk7[0m
 fastboot flash super super_sparsechunk7
 @echo [91mSuccessful flashing super_sparsechunk7[0m
+echo.
+@echo [91mErasing Userdata[0m
 fastboot erase userdata
 @echo [91mSuccessful erased userdata[0m
+echo.
+@echo [91mWiping Userdata Again..[0m
 fastboot -w
 @echo [91mSuccessfully wiped userdata[0m
+echo.
+@echo [91mInitiating Reboot..[0m
 fastboot reboot
 @echo [91mPlease be Patiante your device will boot in 5 second.[0m
 timeout /t 2 > nul
