@@ -22,7 +22,7 @@ This Is Universal Fastboot Maker Batch Script.
 
 1. Install 7zip.
 2. Connect Your Device In Any Mode. 
->. eg ( Recovery, Fastboot, Bootloader) It will Auto Detect And Reboot To Recovery 😊
+> eg ( Recovery, Fastboot, Bootloader) It will Auto Detect And Reboot To Recovery 😊
 3. run startme.bat And voila! it will do all Work itself.
 4. When Device Work Done it Shows You To disconnect Your Device, you Can Use Use your Device Now.
 5. Save That Zip You Get From Product Folder, Its Name Must Be "Fastboot_Unbrick_$FirmwareVersion.zip" All Importent Files There to Rescue your Device From Soft Brick help Of Bootloader..
@@ -37,7 +37,7 @@ This Is Universal Fastboot Maker Batch Script.
 
 ## Changelog:-
 - Device detaction no more need to Connect on recovery mode. 
->. (Enable Usb Debugging Must)
+> (Enable Usb Debugging Must)
 - No More need to make system variable.
 - Fixed 7zip files Erased Error.
 - Add Auto detect Firmware Version.
