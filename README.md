@@ -50,6 +50,7 @@ This Is Universal Fastboot Maker Batch Script.
 - Google SDK For Platforme Tool Files.
 - Xda Mamber **_tal.aloni_** For SparseConverter v1.0.1.
 - Google For Verious searches.
+- Igor Pavlov for 7zip Command Utility
 
 ## Note:-
 1. To Use Fastboot Unbrick Your Device Must Be Bootloader Unlocked.
