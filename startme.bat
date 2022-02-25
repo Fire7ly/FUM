@@ -2,11 +2,11 @@
 title Helper Script.
 :check 7zip
 if exist "%ProgramFiles%\7-Zip" (
-echo 7zip Found At Your Syatem.
+echo 7zip Found At Your System.
 echo Now Process Begin.
 goto checkadb
 ) else (
-@echo [91m7zip not Found At Your Syatem.
+@echo [91m7zip not Found At Your System.
 @echo If You Are on 64-bit Windows Please Install 64-Bit 7zip Package.
 @echo Try Again Later.
 @echo Process Aborted.[0m  
