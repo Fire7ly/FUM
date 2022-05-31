@@ -18,6 +18,7 @@ echo    			         Last But Not The least You Find Your Fastboot_Unbrick.Zip In
 SET /P AREYOUSURE=Are you sure (Y/N)? :
 IF /I "%AREYOUSURE%" NEQ "Y" GOTO END
 rem Making Directory
+set path=.\tool;%path%
 echo.
 @echo [91mSo you are sure. Okay, let's go ...[0m
 echo.
@@ -26,13 +27,13 @@ if not exist .\tmp mkdir .\tmp\files >> nul
 echo Enivironment Created Successfully.
 echo.
 timeout /t 1 > nul
-tool\adb devices 
-tool\adb root 
+adb devices 
+adb root 
 echo.
-for /F "delims=" %%a in ('tool\adb.exe shell getprop ro.product.odm.model') do set DEVICE=%%a
-for /F "delims=" %%a in ('tool\adb.exe shell getprop ro.build.product') do set PRODUCT=%%a
-for /F "delims=" %%a in ('tool\adb.exe shell getprop ro.build.display.ota') do set ID=%%a
-for /F "delims=" %%a in ('tool\adb.exe shell getprop ro.oppo.market.name') do set NAME=%%a
+for /F "delims=" %%a in ('adb shell getprop ro.product.odm.model') do set DEVICE=%%a
+for /F "delims=" %%a in ('adb shell getprop ro.build.product') do set PRODUCT=%%a
+for /F "delims=" %%a in ('adb shell getprop ro.build.display.ota') do set ID=%%a
+for /F "delims=" %%a in ('adb shell getprop ro.oppo.market.name') do set NAME=%%a
 echo.
 echo device checked.
 @echo.[91m
@@ -46,7 +47,7 @@ echo.[0m
 :super
 echo Please Wait Pulling Super From Device.
 echo This May Take A While Be Patience.
-tool\adb pull /dev/block/by-name/super .\tmp\super
+adb pull /dev/block/by-name/super .\tmp\super
 if exist .\tmp\super (
 echo.
 echo Super Pulled Successfully 
@@ -59,7 +60,7 @@ echo.
 timeout /t 1 > nul
 :boot
 echo Please Wait Pulling Boot From Device.
-tool\adb pull /dev/block/by-name/boot .\tmp\files\boot.img>con
+adb pull /dev/block/by-name/boot .\tmp\files\boot.img>con
 if exist .\tmp\files\boot.img (
 echo.
 echo Boot Pulled Successfully 
@@ -72,7 +73,7 @@ echo.
 timeout /t 1 > nul
 :recovery
 echo Please Wait Pulling Recovery From Device.
-tool\adb pull /dev/block/by-name/recovery  .\tmp\files\recovery.img>con
+adb pull /dev/block/by-name/recovery  .\tmp\files\recovery.img>con
 if exist .\tmp\files\recovery.img (
 echo.
 echo Recovery Pulled Successfully. 
@@ -85,7 +86,7 @@ echo.
 timeout /t 1 > nul
 :vbmeta
 echo Please Wait Pulling Vbmeta From Device.
-tool\adb pull /dev/block/by-name/vbmeta  .\tmp\files\vbmeta.img>con
+adb pull /dev/block/by-name/vbmeta  .\tmp\files\vbmeta.img>con
 if exist .\tmp\files\boot.img (
 echo.
 echo Vbmeta Pulled Successfully. 
@@ -103,7 +104,7 @@ echo.
 echo Now Cooking Fastboot Unbrick.
 echo.
 :unplug
-tool\adb reboot
+adb reboot
 echo.
 @echo [91mDevice Work Done, Your Device Boot To System Now. You Can Unplug It From Pc.[0m
 echo.
@@ -112,7 +113,7 @@ timeout /t 2 > nul
 :sparsechunk
 echo Making SuperChunk.
 echo.
-tool\SparseConverter /compress .\tmp\super .\tmp\files 900MB
+SparseConverter /compress .\tmp\super .\tmp\files 900MB
 echo sparsechunk Done.
 echo.
 rem SuperChunk Done. Delete Super To Save Space.
@@ -168,7 +169,6 @@ echo.
 timeout /t 2 > nul
 goto 7zip
 ) else (
- echo %ID% was unexpected at this time.
 @echo [91m Error! Firmware Version Not Detected Enter It Manually.. 
  goto setname
  echo.
@@ -176,7 +176,7 @@ goto 7zip
 :setname
 set /p ID=Enter The Firmware Version (E.g. A01,C01,Octavi): 
 IF "%ID%" GEQ "A**" (
-@echo [91m Your Fatboot_Unbrick_%ID%.zip Will Be Aviliable In Product Folder Once It Done.
+@echo [91m Your Fastboot_Unbrick_%ID%.zip Will Be Aviliable In Product Folder Once It Done.
 @echo Now sit Back and Do Any Other Work It Might Be Take Upto 15 Minutes, Depends On your Pc Performance.
 @echo Chill Out Drink Coffee, Tea, Coke Anything You Like. Its Upto You, LoL.[0m
 echo.
@@ -188,19 +188,17 @@ timeout /t 2 > nul
  goto setname
  )
 :7zip
-
-set path=%ProgramFiles%\7-Zip;%path%
 rem Set Path For 7zip.
-7z a -tzip .\Product\Fatboot_Unbrick_%ID%.zip .\tmp\files .\tmp\Readme.txt
+7za a -tzip .\Product\Fastboot_Unbrick_%ID%.zip .\tmp\files .\tmp\Readme.txt
 echo.
-@echo [91m Congratulations Your Fatboot_Unbrick_%ID%.zip Is Ready.[0m
+@echo [91m Congratulations Your Fastboot_Unbrick_%ID%.zip Is Ready.[0m
 echo.
 rem Set Name Of Fastboot_Unbrick To User Desire.
-if not exist .\Product\Fatboot_Unbrick_%ID%.zip ( @echo [91mFastboot_Unbrick.zip is not present[0m 
+if not exist .\Product\Fastboot_Unbrick_%ID%.zip ( @echo [91mFastboot_Unbrick.zip is not present[0m 
 echo cleaning abort 
 exit
 )
-if exist .\Product\Fatboot_Unbrick_%ID%.zip ( @echo [91mFastboot_Unbrick.zip is present[0m 
+if exist .\Product\Fastboot_Unbrick_%ID%.zip ( @echo [91mFastboot_Unbrick.zip is present[0m 
 )
 :cleaning
 echo.

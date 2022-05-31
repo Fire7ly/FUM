@@ -1,7 +1,7 @@
 @echo off
 title Helper Script.
 :check 7zip
-if exist "%ProgramFiles%\7-Zip" (
+if exist ".\tool\7za.exe" (
 echo 7zip Found At Your System.
 echo Now Process Begin.
 goto checkadb
@@ -19,7 +19,7 @@ tool\adb devices -l | findstr "product:RMX product:rmx" > nul
  if errorlevel 1 (
     echo ADB:
     echo Device Not Connected In Adb Mode.
-	echo Finding Into Fatboot Mode.
+	echo Finding Into Fastboot Mode.
 	echo.
 	goto checkfastboot
  ) else (
@@ -61,7 +61,7 @@ tool\adb devices -l | findstr "recovery" > nul
  	echo.
     echo ADB:
     echo Device Not Connected In Recovey Mode.
-	echo Finding Into Fatboot Mode.
+	echo Finding Into Fastboot Mode.
 	echo.
 	goto checkadb
  ) else (

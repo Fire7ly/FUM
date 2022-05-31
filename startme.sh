@@ -77,7 +77,7 @@ else
     mkdir -p tmp && cd tmp &&  wget https://dl.google.com/android/repository/platform-tools_r31.0.3-linux.zip && unzip platform-tools_r31.0.3-linux.zip platform-tools/adb platform-tools/fastboot && cd ..
     mv ./tmp/platform-tools/adb ./tmp/platform-tools/fastboot ./tool/
     rm -rf ./tmp/*
-    echo -e "${GREEN}Successfully Fatched Adb And Fastboot..${END}"
+    echo -e "${GREEN}Successfully fetched Adb And Fastboot..${END}"
 fi
 echo -e "${GREEN} All Set Good To Go! ${END}"
 bash ./tool/FUM.sh
