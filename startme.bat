@@ -1,5 +1,6 @@
 @echo off
 title Helper Script.
+set path=.\tool;%path%
 :check 7zip
 if exist ".\tool\7za.exe" (
 echo 7zip Found At Your System.
@@ -7,8 +8,6 @@ echo Now Process Begin.
 goto checkadb
 ) else (
 @echo [91m7zip not Found At Your System.
-@echo If You Are on 64-bit Windows Please Install 64-Bit 7zip Package.
-@echo Try Again Later.
 @echo Process Aborted.[0m  
 timeout /t 5 > nul
 exit
@@ -25,6 +24,11 @@ tool\adb devices -l | findstr "product:RMX product:rmx" > nul
  ) else (
     echo ADB:
     echo Device Found In System ADB Mode!
+	for /F "delims=" %%a in ('adb shell getprop ro.product.odm.model') do set DEVICE=%%a
+	for /F "delims=" %%a in ('adb shell getprop ro.build.product') do set PRODUCT=%%a
+	for /F "delims=" %%a in ('adb shell getprop ro.build.display.ota') do set ID=%%a
+	for /F "delims=" %%a in ('adb shell getprop ro.oppo.market.name') do set NAME=%%a
+	echo.
 	tool\adb reboot recovery
 	echo Wait For Reboot Into Recovery.
 	tool\adb wait-for-usb-recovery > nul 
@@ -70,7 +74,7 @@ tool\adb devices -l | findstr "recovery" > nul
         echo Device Found In Recovery Adb Mode!
 	echo Now Process Begin.
 	tool\adb wait-for-usb-recovery > nul
-	timout /t 2 > nul
-	Start /Max .\tool\FUM.bat
+	timeout /t 2 > nul
+	start /MAX .\tool\FUM.bat
 	exit
 	)

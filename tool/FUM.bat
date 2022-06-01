@@ -1,6 +1,7 @@
 @echo off
 :Script
 setlocal EnableExtensions DisableDelayedExpansion
+set files=.\tmp\files
 color 0A
 title FUMA BY @fire7ly 
 cls
@@ -15,25 +16,19 @@ cls
 @echo   				  [91mUse It At Your Own Risk. If Somthing Wrong, And You Point Finger On me I WILL LAUGH ON YOU.[0m
 echo    			         Last But Not The least You Find Your Fastboot_Unbrick.Zip In The Product Folder Keep That Safe.
 :PROMPT
-SET /P AREYOUSURE=Are you sure (Y/N)? :
+SET /P AREYOUSURE=Are you sure (Y/N)? : 
 IF /I "%AREYOUSURE%" NEQ "Y" GOTO END
 rem Making Directory
-set path=.\tool;%path%
 echo.
 @echo [91mSo you are sure. Okay, let's go ...[0m
 echo.
 if exist .\tmp rd /s /q .\tmp  
-if not exist .\tmp mkdir .\tmp\files >> nul
+if not exist .\tmp mkdir %files% >> nul
 echo Enivironment Created Successfully.
 echo.
 timeout /t 1 > nul
 adb devices 
 adb root 
-echo.
-for /F "delims=" %%a in ('adb shell getprop ro.product.odm.model') do set DEVICE=%%a
-for /F "delims=" %%a in ('adb shell getprop ro.build.product') do set PRODUCT=%%a
-for /F "delims=" %%a in ('adb shell getprop ro.build.display.ota') do set ID=%%a
-for /F "delims=" %%a in ('adb shell getprop ro.oppo.market.name') do set NAME=%%a
 echo.
 echo device checked.
 @echo.[91m
@@ -113,7 +108,9 @@ timeout /t 2 > nul
 :sparsechunk
 echo Making SuperChunk.
 echo.
-SparseConverter /compress .\tmp\super .\tmp\files 900MB
+SparseConverter /compress .\tmp\super .\tmp 900MB > nul
+:countchunk
+dir /b .\tmp | findstr super_sparsechunk > .\tmp\super.txt
 echo sparsechunk Done.
 echo.
 rem SuperChunk Done. Delete Super To Save Space.
@@ -128,40 +125,24 @@ echo.
 timeout /t 1 > nul
 echo Collecting Files And Making Fastboot Unbrick For You.
 echo Please Wait..
-copy .\tool\adb.exe .\tmp\files && copy .\tool\AdbWinApi.dll .\tmp\files && copy .\tool\AdbWinUsbApi.dll .\tmp\files && copy .\tool\fastboot.exe .\tmp\files >> nul
-copy .\tool\adb .\tmp\files && copy .\tool\fastboot .\tmp\files && copy .\tool\Readme.txt .\tmp\Readme.txt >> nul
+for %%i in (AdbWinApi.dll AdbWinUsbApi.dll fastboot.exe fastboot) do copy .\tool\%%i %files% > nul
+copy .\tool\Readme.txt .\tmp\Readme.txt > nul
 rem Copy Neccessory Files Into Folder.
 :checkfiles
-if exist .\tmp\files\adb.exe ( echo adb.exe is present ) 
-if not exist .\tmp\files\adb.exe (@echo [91madb is not present[0m)
-if exist .\tmp\files\adb ( echo adb is present ) 
-if not exist .\tmp\files\adb (@echo [91madb is not present[0m)
-if exist .\tmp\files\fastboot ( echo fastboot is present ) 
-if not exist .\tmp\files\fastboot (@echo [91mfastboot is not present[0m)
-if exist .\tmp\files\AdbWinApi.dll ( echo AdbWinApi.dll is present ) 
-if not exist .\tmp\files\AdbWinApi.dll (@echo [91mAdbWinApi.dll is not present[0m )
-if exist .\tmp\files\AdbWinUsbApi.dll ( echo AdbWinUsbApi.dll is present ) 
-if not exist .\tmp\files\AdbWinUsbApi.dll (@echo [91mAdbWinUsbApi.dlll is not present[0m )
-if exist .\tmp\files\boot.img ( echo boot.img is present ) 
-if not exist .\tmp\files\boot.img (@echo [91m boot.img is not present[0m )
-if exist .\tmp\files\fastboot.exe ( echo fastboot.exe is present ) 
-if not exist .\tmp\files\fastboot.exe (@echo [91m fastboot.exe is not present[0m )
-if exist .\tmp\files\recovery.img ( echo recovery.img is present ) 
-if not exist .\tmp\files\recovery.img (@echo [91m recovery.img is not present[0m )
-if exist .\tmp\files\rescue.bat ( echo rescue.bat is present ) 
-if not exist .\tmp\files\recovery.img (@echo [91m recovery.img is not present[0m )
-if exist .\tmp\files\rescue.sh ( echo rescue.sh is present )
-if not exist .\tmp\files\rescue.sh (@echo [91m rescue.sh is not present[0m )
-if exist .\tmp\files\super_sparsechunk6 ( echo super_sparsechunk6 is present ) 
-if not exist .\tmp\files\super_sparsechunk6 (@echo [91m super_sparsechunk6 is not present[0m )
-if exist .\tmp\files\super_sparsechunk1 ( echo super_sparsechunk1 is present ) 
-if not exist .\tmp\files\super_sparsechunk1 (@echo [91m super_sparsechunk1 is not present[0m )
-if exist .\tmp\files\super_sparsechunk7 ( echo super_sparsechunk7 is present ) 
-if not exist .\tmp\files\super_sparsechunk7 (@echo [91m super_sparsechunk7 is not present[0m )
+for %%i in (fastboot.exe fastboot AdbWinApi.dll AdbWinUsbApi.dll boot.img recovery.img rescue.bat rescue.sh) do (
+if exist .\%files%\%%i ( 
+    echo %%i is present 
+) else (
+    @echo [91m%%i is not present[0m 
+)
+)
+:movesuper
+for /f %%s in (.\tmp\super.txt) do move .\tmp\%%s %files% > nul
+del /q .\tmp\super.txt
 :SETFN
 mkdir Product
 IF "%ID%" GEQ "A**" (
-@echo [91m Firmware Detacted: %ID% 
+@echo [91mFirmware Detacted: %ID% 
 @echo Your Fastboot_Unbrick_%ID%.zip Will Be Aviliable In Product Folder Once It Done.
 @echo Now sit Back and Do Any Other Work It Might Be Take Upto 15 Minutes, Depends On your Pc Performance.
 @echo Chill Out Drink Coffee, Tea, Coke Anything You Like. Its Upto You LoL.[0m
@@ -182,7 +163,6 @@ IF "%ID%" GEQ "A**" (
 echo.
 timeout /t 2 > nul
 ) else (
- echo %ID% was unexpected at this time.
  echo Enter Your Device Firmware Version, E.g. A03,C01,RomName.
  echo Enter Again Option Is Not Valid!
  goto setname
@@ -206,9 +186,9 @@ echo Time For Cleaning...
 echo.
 timeout /t 2 > nul
 rd /s /q tmp 
-@echo [91m Opening Folder For You.[0m
+@echo [91mOpening Folder For You.[0m
 start .\Product
-@echo [91m Cleaning Done Process Ends In 2 Seconds.[0m
+@echo [91mCleaning Done Process Ends In 2 Seconds.[0m
 timeout /t 2 > nul
 :end
 goto :eof
