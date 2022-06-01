@@ -44,6 +44,10 @@ This Is Universal Fastboot Maker Batch Script.
 - Added Linux Fastboot Firmware Flashing Script.
 - Added Finish Zip Directory To Product Folder. 
 - Done Little Cleaning.
+> Update 01/06
+- No need to install 7zip 
+- Improve firmware detection
+- Improve file check also check chunk seperately
 
 ## Thanks:-
 
